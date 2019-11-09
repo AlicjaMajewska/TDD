@@ -3,15 +3,16 @@ package money;
 import java.util.Objects;
 
 final class Pair {
-    final String first;
-    final String second;
+    
+    private final Currency first;
+    private final Currency second;
 
-    private Pair(String first, String second) {
+    private Pair(Currency first, Currency second) {
         this.first = first;
         this.second = second;
     }
 
-    static Pair of(String first, String second) {
+    static Pair of(Currency first, Currency second) {
         return new Pair(first, second);
     }
 

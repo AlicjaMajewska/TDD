@@ -2,6 +2,8 @@ package money;
 
 import org.junit.jupiter.api.Test;
 
+import static money.Currency.DOLLAR;
+import static money.Currency.FRANC;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class MoneyTest {
@@ -29,7 +31,7 @@ class MoneyTest {
         Expression expression = Money.dollar(5).plus(Money.dollar(5));
 
         // when
-        Money reduced = Bank.create().reduce(expression, "USD");
+        Money reduced = Bank.create().reduce(expression, DOLLAR);
 
         // then
         assertThat(reduced).isEqualTo(Money.dollar(10));
@@ -42,10 +44,10 @@ class MoneyTest {
         Expression franc = Money.franc(10);
         Expression dollar = Money.dollar(5);
         Bank bank = Bank.create();
-        bank.addRate("CHF", "USD", 2);
+        bank.addRate(FRANC, DOLLAR, 2);
 
         // when
-        Money reduced = bank.reduce(franc.plus(dollar), "USD");
+        Money reduced = bank.reduce(franc.plus(dollar), DOLLAR);
 
         // then
         assertThat(reduced).isEqualTo(Money.dollar(10));
@@ -57,10 +59,10 @@ class MoneyTest {
         Expression franc = Money.franc(10);
         Expression dollar = Money.dollar(5);
         Bank bank = Bank.create();
-        bank.addRate("CHF", "USD", 2);
+        bank.addRate(FRANC, DOLLAR, 2);
 
         // when
-        Money reduced = bank.reduce(franc.plus(dollar).times(2), "USD");
+        Money reduced = bank.reduce(franc.plus(dollar).times(2), DOLLAR);
 
         // then
         assertThat(reduced).isEqualTo(Money.dollar(20));
@@ -68,7 +70,7 @@ class MoneyTest {
 
     @Test
     void testConversion() {
-        Money reduced = Bank.create().reduce(Money.dollar(5), "USD");
+        Money reduced = Bank.create().reduce(Money.dollar(5), DOLLAR);
 
         assertThat(reduced).isEqualTo(Money.dollar(5));
     }
@@ -76,8 +78,8 @@ class MoneyTest {
     @Test
     void testConversionToOtherCurrency() {
         Bank bank = Bank.create();
-        bank.addRate("CHF", "USD", 2);
-        Money reduced = bank.reduce(Money.franc(10), "USD");
+        bank.addRate(FRANC, DOLLAR, 2);
+        Money reduced = bank.reduce(Money.franc(10), DOLLAR);
         assertThat(reduced).isEqualTo(Money.dollar(5));
     }
 }

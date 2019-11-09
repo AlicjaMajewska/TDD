@@ -3,19 +3,19 @@ package money;
 class Money implements Expression {
 
     int amount;
-    private String currency;
+    private Currency currency;
 
-    Money(int amount, String currency) {
+    Money(int amount, Currency currency) {
         this.amount = amount;
         this.currency = currency;
     }
 
     static Money dollar(int amount) {
-        return new Money(amount, "USD");
+        return new Money(amount, Currency.DOLLAR);
     }
 
     static Money franc(int amount) {
-        return new Money(amount, "CHF");
+        return new Money(amount, Currency.FRANC);
     }
 
     public Expression times(int multiplier) {
@@ -37,11 +37,11 @@ class Money implements Expression {
 
     @Override
     public String toString() {
-        return amount + " " + currency;
+        return amount + " " + currency.symbol();
     }
 
     @Override
-    public Money reduce(Bank bank, String to) {
+    public Money reduce(Bank bank, Currency to) {
         int rate = bank.rate(currency, to);
 
         return new Money(amount / rate, to);

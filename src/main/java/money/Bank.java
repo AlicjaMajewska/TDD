@@ -12,16 +12,16 @@ class Bank {
         return new Bank();
     }
 
-    Money reduce(Expression source, String to) {
+    Money reduce(Expression source, Currency to) {
         return source.reduce(this, to);
     }
 
-    void addRate(String from, String to, int rate) {
+    void addRate(Currency from, Currency to, int rate) {
         rates.put(Pair.of(from, to), rate);
     }
 
-    int rate(String rate, String to) {
-        if (rate.equals(to)) {
+    int rate(Currency rate, Currency to) {
+        if (rate == to) {
             return 1;
         }
         return rates.get(Pair.of(rate, to));
