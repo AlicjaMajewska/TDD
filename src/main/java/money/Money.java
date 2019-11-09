@@ -27,6 +27,17 @@ class Money implements Expression {
     }
 
     @Override
+    public Money reduce(Bank bank, Currency to) {
+        int rate = bank.rate(currency, to);
+
+        return new Money(amount / rate, to);
+    }
+
+    Expression minus(Expression subtrahend) {
+        return new Subtraction(this, subtrahend);
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (obj instanceof Money) {
             final Money that = (Money) obj;
@@ -40,14 +51,8 @@ class Money implements Expression {
         return amount + " " + currency.symbol();
     }
 
-    @Override
-    public Money reduce(Bank bank, Currency to) {
-        int rate = bank.rate(currency, to);
-
-        return new Money(amount / rate, to);
-    }
-
     int amount() {
         return amount;
     }
+
 }

@@ -2,8 +2,8 @@ package money;
 
 class Sum implements Expression {
 
-    private Expression augend;
-    private Expression addend;
+    private final Expression augend;
+    private final Expression addend;
 
     Sum(Expression augend, Expression addend) {
         this.augend = augend;

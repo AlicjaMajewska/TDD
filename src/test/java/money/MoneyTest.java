@@ -1,5 +1,6 @@
 package money;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static money.Currency.DOLLAR;
@@ -37,8 +38,8 @@ class MoneyTest {
         assertThat(reduced).isEqualTo(Money.dollar(10));
     }
 
-//    5$ + 10 CHF = 0 $ -> rate 2:1
     @Test
+    @DisplayName("5$ + 10 CHF = 0 $ -> rate 2:1")
     void testAddingDifferentCurrencies() {
         // given
         Expression franc = Money.franc(10);
@@ -70,16 +71,41 @@ class MoneyTest {
 
     @Test
     void testConversion() {
-        Money reduced = Bank.create().reduce(Money.dollar(5), DOLLAR);
+        // given
+        Money dollar = Money.dollar(5);
 
+        // when
+        Money reduced = Bank.create().reduce(dollar, DOLLAR);
+
+        // then
         assertThat(reduced).isEqualTo(Money.dollar(5));
     }
 
     @Test
     void testConversionToOtherCurrency() {
+        // given
         Bank bank = Bank.create();
         bank.addRate(FRANC, DOLLAR, 2);
+
+        // when
         Money reduced = bank.reduce(Money.franc(10), DOLLAR);
+
+        // then
         assertThat(reduced).isEqualTo(Money.dollar(5));
+    }
+
+    @Test
+    @DisplayName("10$ - 5$ = 5$")
+    void testSubtractionOfSameCurrencies() {
+        // given
+        final Money dollars10 = Money.dollar(10);
+        final Money dollars5 = Money.dollar(5);
+        final Bank bank = Bank.create();
+
+        // when
+        final Money result = bank.reduce(dollars10.minus(dollars5), DOLLAR);
+
+        // then
+        assertThat(result).isEqualTo(Money.dollar(5));
     }
 }
