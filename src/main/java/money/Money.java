@@ -2,8 +2,8 @@ package money;
 
 class Money implements Expression {
 
-    int amount;
-    private Currency currency;
+    private final int amount;
+    private final Currency currency;
 
     Money(int amount, Currency currency) {
         this.amount = amount;
@@ -45,5 +45,9 @@ class Money implements Expression {
         int rate = bank.rate(currency, to);
 
         return new Money(amount / rate, to);
+    }
+
+    int amount() {
+        return amount;
     }
 }
