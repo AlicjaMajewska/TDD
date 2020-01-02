@@ -1,19 +1,13 @@
-package romannumerals;
+package romannumerals.incremental;
 
 import org.junit.jupiter.api.*;
+import romannumerals.RomanNumeral;
+import romannumerals.incremental.RomanNumeralIncremental;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-class RomanNumeralsConverterTest {
-
-
-    private RomanNumeralsConverter converter;
-
-    @BeforeEach
-    void setUp() {
-        converter = new RomanNumeralsConverter();
-    }
+class RomanNumeralsIncrementalTest {
 
     @Test
     void should_generate_1_to_I() {
@@ -21,7 +15,7 @@ class RomanNumeralsConverterTest {
         int number = 1;
 
         // when
-        RomanNumeral romanNumeral = converter.toRoman(number);
+        RomanNumeral romanNumeral = RomanNumeralIncremental.from(number);
 
         // then
         assertThat(romanNumeral.value()).isEqualTo("I");
@@ -33,7 +27,7 @@ class RomanNumeralsConverterTest {
         int number = 2;
 
         // when
-        RomanNumeral romanNumeral = converter.toRoman(number);
+        RomanNumeral romanNumeral = RomanNumeralIncremental.from(number);
 
         // then
         assertThat(romanNumeral.value()).isEqualTo("II");
@@ -45,7 +39,7 @@ class RomanNumeralsConverterTest {
         int number = 3;
 
         // when
-        RomanNumeral romanNumeral = converter.toRoman(number);
+        RomanNumeral romanNumeral = RomanNumeralIncremental.from(number);
 
         // then
         assertThat(romanNumeral.value()).isEqualTo("III");
@@ -57,7 +51,7 @@ class RomanNumeralsConverterTest {
         int number = 4;
 
         // when
-        RomanNumeral romanNumeral = converter.toRoman(number);
+        RomanNumeral romanNumeral = RomanNumeralIncremental.from(number);
 
         // then
         assertThat(romanNumeral.value()).isEqualTo("IV");
@@ -69,7 +63,7 @@ class RomanNumeralsConverterTest {
         int number = 5;
 
         // when
-        RomanNumeral romanNumeral = converter.toRoman(number);
+        RomanNumeral romanNumeral = RomanNumeralIncremental.from(number);
 
         // then
         assertThat(romanNumeral.value()).isEqualTo("V");
@@ -81,7 +75,7 @@ class RomanNumeralsConverterTest {
         int number = 6;
 
         // when
-        RomanNumeral romanNumeral = converter.toRoman(number);
+        RomanNumeral romanNumeral = RomanNumeralIncremental.from(number);
 
         // then
         assertThat(romanNumeral.value()).isEqualTo("VI");
@@ -94,7 +88,7 @@ class RomanNumeralsConverterTest {
         int number = 8;
 
         // when
-        RomanNumeral romanNumeral = converter.toRoman(number);
+        RomanNumeral romanNumeral = RomanNumeralIncremental.from(number);
 
         // then
         assertThat(romanNumeral.value()).isEqualTo("VIII");
@@ -106,7 +100,7 @@ class RomanNumeralsConverterTest {
         int number = 9;
 
         // when
-        RomanNumeral romanNumeral = converter.toRoman(number);
+        RomanNumeral romanNumeral = RomanNumeralIncremental.from(number);
 
         // then
         assertThat(romanNumeral.value()).isEqualTo("IX");
@@ -118,7 +112,7 @@ class RomanNumeralsConverterTest {
         int number = 10;
 
         // when
-        RomanNumeral romanNumeral = converter.toRoman(number);
+        RomanNumeral romanNumeral = RomanNumeralIncremental.from(number);
 
         // then
         assertThat(romanNumeral.value()).isEqualTo("X");
@@ -131,7 +125,7 @@ class RomanNumeralsConverterTest {
         int number = 11;
 
         // when
-        RomanNumeral romanNumeral = converter.toRoman(number);
+        RomanNumeral romanNumeral = RomanNumeralIncremental.from(number);
 
         // then
         assertThat(romanNumeral.value()).isEqualTo("XI");
@@ -143,7 +137,7 @@ class RomanNumeralsConverterTest {
         int number = 19;
 
         // when
-        RomanNumeral romanNumeral = converter.toRoman(number);
+        RomanNumeral romanNumeral = RomanNumeralIncremental.from(number);
 
         // then
         assertThat(romanNumeral.value()).isEqualTo("XIX");
@@ -155,7 +149,7 @@ class RomanNumeralsConverterTest {
         int number = 21;
 
         // when
-        RomanNumeral romanNumeral = converter.toRoman(number);
+        RomanNumeral romanNumeral = RomanNumeralIncremental.from(number);
 
         // then
         assertThat(romanNumeral.value()).isEqualTo("XXI");
@@ -167,7 +161,7 @@ class RomanNumeralsConverterTest {
         int number = 39;
 
         // when
-        RomanNumeral romanNumeral = converter.toRoman(number);
+        RomanNumeral romanNumeral = RomanNumeralIncremental.from(number);
 
         // then
         assertThat(romanNumeral.value()).isEqualTo("XXXIX");
@@ -180,7 +174,7 @@ class RomanNumeralsConverterTest {
         int number = 40;
 
         // when
-        RomanNumeral romanNumeral = converter.toRoman(number);
+        RomanNumeral romanNumeral = RomanNumeralIncremental.from(number);
 
         // then
         assertThat(romanNumeral.value()).isEqualTo("XL");
@@ -192,7 +186,7 @@ class RomanNumeralsConverterTest {
         int number = 49;
 
         // when
-        RomanNumeral romanNumeral = converter.toRoman(number);
+        RomanNumeral romanNumeral = RomanNumeralIncremental.from(number);
 
         // then
         assertThat(romanNumeral.value()).isEqualTo("XLIX");
@@ -204,7 +198,7 @@ class RomanNumeralsConverterTest {
         int number = 50;
 
         // when
-        RomanNumeral romanNumeral = converter.toRoman(number);
+        RomanNumeral romanNumeral = RomanNumeralIncremental.from(number);
 
         // then
         assertThat(romanNumeral.value()).isEqualTo("L");
